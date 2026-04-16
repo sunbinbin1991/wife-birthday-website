@@ -78,7 +78,7 @@ function App() {
               <Music className="w-8 h-8 text-[#F4AFA8]" />
             </div>
             <h3 className="text-xl font-display font-bold text-[#4A4A4A] mb-2">
-              开启音乐体验
+              开启音乐体�?
             </h3>
             <p className="text-[#7A7A7A] text-sm mb-6">
               建议开启背景音乐，获得更沉浸的生日体验
@@ -88,13 +88,13 @@ function App() {
                 onClick={() => setShowAudioPrompt(false)}
                 className="flex-1 px-4 py-3 rounded-full border-2 border-[#F4AFA8] text-[#F4AFA8] font-medium hover:bg-[#F4AFA8]/10 transition-colors"
               >
-                暂不开启
+                暂不开�?
               </button>
               <button
                 onClick={enableAudio}
                 className="flex-1 px-4 py-3 rounded-full bg-[#F4AFA8] text-white font-medium hover:bg-[#E89A94] transition-colors"
               >
-                开启音乐
+                开启音�?
               </button>
             </div>
           </div>
@@ -157,8 +157,8 @@ function App() {
         preload="auto"
       >
         <source 
-          src="/happy-birthday.wav" 
-          type="audio/wav" 
+          src="/happybirthday.mp3" 
+          type="audio/mpeg" 
         />
       </audio>
     </div>
