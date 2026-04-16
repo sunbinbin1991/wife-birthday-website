@@ -150,21 +150,15 @@ function App() {
         </div>
       )}
 
-      {/* Hidden Audio Element - 献给爱丽丝 */}
+      {/* Hidden Audio Element - 祝你生日快乐 */}
       <audio 
         ref={audioRef} 
         loop 
         preload="auto"
-        crossOrigin="anonymous"
       >
         <source 
-          src="https://www.kumeiwp.com/wj/31397/2022/04/03/362f22407c154ca3e7ddf51007053c76.mp3" 
-          type="audio/mpeg" 
-        />
-        {/* Fallback: 使用另一个音频源 */}
-        <source 
-          src="https://www.gequbao.com/api/play/url?hash=54886" 
-          type="audio/mpeg" 
+          src="/happy-birthday.wav" 
+          type="audio/wav" 
         />
       </audio>
     </div>
