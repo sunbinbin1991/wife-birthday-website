@@ -21,44 +21,44 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
 
   const memories: Memory[] = [
     { 
-      year: 2019, 
-      title: "求婚时的你", 
-      description: "那时候还是女孩，眼里只有星星和我",
-      emoji: "💍",
-      color: "#F4AFA8"
-    },
-    { 
-      year: 2020, 
-      title: "新婚第一个生日", 
-      description: "二人世界最后的余韵，每一秒都珍贵",
-      emoji: "💕",
+      year: 2021, 
+      title: "二人世界的第一个生日", 
+      description: "那一年我们去了三亚看大海，许下了无数个一起看海的愿望",
+      emoji: "🏖️",
       color: "#E8B4B8"
     },
     { 
-      year: 2021, 
-      title: "怀孕中的生日", 
-      description: "圆滚滚的幸福，肚子里藏着我们的未来",
+      year: 2022, 
+      title: "二人世界的第二个生日", 
+      description: "那一年有圆滚滚的幸福，肚子里藏着我们的未来",
       emoji: "🤰",
       color: "#D4A574"
     },
     { 
-      year: 2022, 
+      year: 2023, 
       title: "新手妈妈的第一个生日", 
-      description: "Probably 边喂奶边许愿， chaos也是幸福",
+      description: "那一年我们一同见证了小生命的诞生，迎来了我们的小宝贝，见证了太多第一次的喜悦",
       emoji: "👶",
       color: "#F4AFA8"
     },
     { 
-      year: 2023, 
-      title: "宝宝会叫妈妈的生日", 
-      description: "Chaos中的温暖，那一声妈妈胜过所有",
-      emoji: "🗣️",
+      year: 2024, 
+      title: "新手妈妈的第二个生日", 
+      description: "那一年我们听到了最动听的声音，第一次被叫妈妈，第一次被叫爸爸...",
+      emoji: "👨‍👩‍👦",
       color: "#E8B4B8"
     },
     { 
-      year: 2024, 
+      year: 2025, 
+      title: "去年的你", 
+      description: "我们在迪士尼抓到了一只在逃公主...",
+      emoji: "👸",
+      color: "#D4A574"
+    },
+    { 
+      year: 2026, 
       title: "今年的你", 
-      description: "今年愿望里，我希望你自己排第一",
+      description: "今年愿望里，我希望你自己排第一,做快乐的自己",
       emoji: "✨",
       color: "#D4A574"
     },

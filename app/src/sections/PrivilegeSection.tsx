@@ -15,10 +15,10 @@ interface Privilege {
 
 const PrivilegeSection = ({ onComplete }: PrivilegeSectionProps) => {
   const [privileges, setPrivileges] = useState<Privilege[]>([
-    { id: 1, title: "睡到自然醒券", subtitle: "我承包今天所有带娃", icon: "😴", scratched: false },
-    { id: 2, title: "不洗碗券", subtitle: "24小时豁免权", icon: "🍽️", scratched: false },
-    { id: 3, title: "独食券", subtitle: "蛋糕不用分给宝宝，全归你", icon: "🍰", scratched: false },
-    { id: 4, title: "Spa时间券", subtitle: "晚上泡脚按摩预定", icon: "💆", scratched: false },
+    { id: 1, title: "我要放假券", subtitle: "使用该券可享受24小时假期，不限制次数", icon: "🏖️", scratched: false },
+    { id: 2, title: "清空购物车援助券", subtitle: "购物车里最贵的那件单品，由对方赞助付款", icon: "🛍️", scratched: false },
+    { id: 3, title: "专属大厨券", subtitle: "指定菜单，对方必须负责买菜、做饭、洗碗一条龙服务", icon: "👨‍🍳", scratched: false },
+    { id: 4, title: "Spa时间券", subtitle: "真人老公版泡脚按摩预定", icon: "💆", scratched: false },
   ]);
   
   const [allScratched, setAllScratched] = useState(false);
@@ -175,10 +175,10 @@ const PrivilegeSection = ({ onComplete }: PrivilegeSectionProps) => {
             <span className="text-sm text-[#7A7A7A] uppercase tracking-wider">Birthday Privileges</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#4A4A4A] mb-3">
-            今日特权清单
+            今日特权清单-可以刮开看看哦 ✨
           </h2>
           <p className="text-[#7A7A7A] text-sm sm:text-base max-w-md mx-auto">
-            这不是家务外包，是<span className="text-[#F4AFA8] font-semibold">生日快乐的基本法</span>
+            这不是今日专属，是每天可选的，<span className="text-[#F4AFA8] font-semibold">生日快乐的基本法</span>
           </p>
         </div>
 

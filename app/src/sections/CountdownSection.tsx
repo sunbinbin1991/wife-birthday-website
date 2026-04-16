@@ -104,7 +104,7 @@ const CountdownSection = ({ onComplete }: CountdownSectionProps) => {
           距离你降临这个世界的
         </h1>
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-[#F4AFA8] mb-8">
-          第 <span className="text-[#D4A574]">30</span> 年
+          第 <span className="text-[#D4A574]">33</span> 年
         </h2>
 
         {/* Countdown Timer */}
@@ -126,8 +126,8 @@ const CountdownSection = ({ onComplete }: CountdownSectionProps) => {
         {/* Opening Message */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl px-6 py-4 sm:px-8 sm:py-5 shadow-lg max-w-md mx-auto mb-10">
           <p className="text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
-            今天没有早醒的宝宝，没有待洗的衣服<br />
-            只有 <span className="text-[#F4AFA8] font-semibold">24小时</span> 完全属于你的时光
+            亲爱的老婆，今天没有早醒的宝宝，没有待洗的衣服<br />
+            只有 <span className="text-[#F4AFA8] font-semibold">24小时</span> 属于你的快乐时光
           </p>
         </div>
 

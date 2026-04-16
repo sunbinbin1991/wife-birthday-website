@@ -37,12 +37,12 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
 
   // 生日照片数据
   const photos: Photo[] = [
-    { year: 2019, month: "4月", description: "求婚那年的生日", emoji: "💍" },
-    { year: 2020, month: "4月", description: "新婚后的第一个生日", emoji: "💕" },
-    { year: 2021, month: "4月", description: "怀孕中的生日", emoji: "🤰" },
-    { year: 2022, month: "4月", description: "成为妈妈后的第一个生日", emoji: "👶" },
-    { year: 2023, month: "4月", description: "宝宝会叫妈妈的生日", emoji: "🗣️" },
-    { year: 2024, month: "4月", description: "今年的生日", emoji: "✨" },
+    { year: 2021, month: "4月", description: "二人世界的那一年", emoji: "🏖️" },
+    { year: 2022, month: "4月", description: "二人世界的第二年", emoji: "🤰" },
+    { year: 2023, month: "4月", description: "新手妈妈的第一个生日", emoji: "👶" },
+    { year: 2024, month: "4月", description: "新手妈妈的第二个生日", emoji: "👨‍👩‍👦" },
+    { year: 2025, month: "4月", description: "去年的你", emoji: "👸" },
+    { year: 2026, month: "4月", description: "今年的生日", emoji: "✨" },
   ];
 
   useEffect(() => {
@@ -240,7 +240,7 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
 
               {/* Date */}
               <div className="text-center mb-4">
-                <span className="text-sm text-[#7A7A7A]">2025年4月22日</span>
+                <span className="text-sm text-[#7A7A7A]">2026年4月22日</span>
               </div>
 
               {/* Message */}
