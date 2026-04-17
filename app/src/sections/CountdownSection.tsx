@@ -104,7 +104,7 @@ const CountdownSection = ({ onComplete }: CountdownSectionProps) => {
           距离你降临这个世界的
         </h1>
         <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-[#F4AFA8] mb-8">
-          第 <span className="text-[#D4A574]">33</span> 年
+          第 <span className="text-[#D4A574]">18</span> 年
         </h2>
 
         {/* Countdown Timer */}

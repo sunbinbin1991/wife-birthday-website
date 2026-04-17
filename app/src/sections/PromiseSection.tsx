@@ -22,9 +22,9 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [promises, setPromises] = useState<Promise[]>([
     { id: 1, text: "每月一次只属于我们的晚餐", checked: false },
-    { id: 2, text: "每年一次不带娃的旅行", checked: false },
-    { id: 3, text: "每周三小时你的自由时间", checked: false },
-    { id: 4, text: "每天一个拥抱和一句我爱你", checked: false },
+    { id: 2, text: "每年一次带娃的旅行", checked: false },
+    { id: 3, text: "每周四小时你的自由时间", checked: false },
+    { id: 4, text: "每周一个拥抱和一句我爱你", checked: false },
     { id: 5, text: "永远把你放在第一位", checked: false },
   ]);
   const [signature, setSignature] = useState('');
@@ -157,7 +157,7 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg mb-4">
           <h3 className="text-sm font-semibold text-[#4A4A4A] mb-3 flex items-center gap-2">
             <Camera className="w-4 h-4 text-[#F4AFA8]" />
-            历年生日回忆
+            历年回忆
           </h3>
           <div className="grid grid-cols-3 gap-2">
             {photos.map((photo, index) => (

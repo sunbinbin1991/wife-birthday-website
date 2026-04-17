@@ -204,7 +204,7 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
                   onClick={onComplete}
                   className="group bg-[#F4AFA8] hover:bg-[#E89A94] text-white px-8 py-4 rounded-full font-medium text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-flex items-center gap-2"
                 >
-                  <span>看看小寿星准备了什么</span>
+                  <span>看看小阿宝准备了什么</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>

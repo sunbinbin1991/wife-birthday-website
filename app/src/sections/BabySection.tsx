@@ -62,7 +62,7 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
             <span className="text-sm text-[#7A7A7A] uppercase tracking-wider">From Little One</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#4A4A4A]">
-            来自小寿星的祝福
+            来自小阿宝的祝福
           </h2>
         </div>
 
