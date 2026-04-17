@@ -88,10 +88,10 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Calendar className="w-5 h-5 text-[#F4AFA8]" />
-            <span className="text-sm text-[#7A7A7A] uppercase tracking-wider">5 Years of Love</span>
+            <span className="text-sm text-[#7A7A7A] uppercase tracking-wider">6 Years of Love</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-[#4A4A4A] mb-3">
-            五年时光，一盒珍藏
+            六年时光，一盒珍藏
           </h2>
           <p className="text-[#7A7A7A] text-sm sm:text-base">
             点击礼盒，打开我们的回忆
