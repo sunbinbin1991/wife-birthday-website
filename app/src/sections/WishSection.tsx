@@ -27,12 +27,15 @@ interface Particle {
   size: number;
 }
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 const WishSection = () => {
   const [wish, setWish] = useState('');
   const [stars, setStars] = useState<Star[]>([]);
   const [, setFireworks] = useState<Firework[]>([]);
   const [showFinalMessage, setShowFinalMessage] = useState(false);
   const [isWishing, setIsWishing] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
 
@@ -157,10 +160,24 @@ const WishSection = () => {
     };
   }, []);
 
-  const handleWish = () => {
+  const handleWish = async () => {
     if (!wish.trim()) return;
     
     setIsWishing(true);
+    
+    // Submit to Formspree in background
+    if (FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+      try {
+        await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: wish.trim() }),
+        });
+        setSubmitStatus('success');
+      } catch {
+        setSubmitStatus('error');
+      }
+    }
     
     // Launch fireworks
     const launchFireworks = () => {
@@ -282,6 +299,9 @@ const WishSection = () => {
                 所有愿望都会实现<br />
                 因为我会陪你一起
               </p>
+              {submitStatus === 'success' && (
+                <p className="text-[#F4AFA8] text-xs mt-3">✨ 愿望已悄悄记下</p>
+              )}
             </div>
 
             {/* Replay Button */}
