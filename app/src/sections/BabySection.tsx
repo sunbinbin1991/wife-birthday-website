@@ -200,6 +200,7 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
           onBabyAudioEnd?.();
         }}
       >
+        <source src="/baby_saying.mp3" type="audio/mpeg" />
         <source src="/baby_saying.m4a" type="audio/mp4" />
         您的浏览器不支持播放该音频
       </audio>
