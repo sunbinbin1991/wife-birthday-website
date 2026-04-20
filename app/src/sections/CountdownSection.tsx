@@ -11,7 +11,7 @@ const CountdownSection = ({ onComplete }: CountdownSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Target date: April 22, 2025
-  const targetDate = new Date('2025-04-22T00:00:00');
+  const targetDate = new Date('2026-04-22T00:00:00');
 
   useEffect(() => {
     setIsVisible(true);
