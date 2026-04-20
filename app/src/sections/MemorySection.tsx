@@ -106,26 +106,26 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
 
         {/* Gift Box */}
         {!isOpen && (
-          <div className="flex justify-center mb-10">
+          <div className="flex flex-col items-center mb-10">
             <button
               onClick={handleOpenGift}
               className="group relative animate-bounce-soft"
             >
-              <div className="relative w-48 h-48 sm:w-64 sm:h-64 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-44 h-44 sm:w-60 sm:h-60 transition-transform duration-300 group-hover:scale-105">
                 <img 
                   src="/images/gift-box.jpg" 
                   alt="Gift Box"
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-contain drop-shadow-2xl"
+                  className="w-full h-full object-contain drop-shadow-2xl rounded-2xl"
                 />
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-[#F4AFA8]/20 rounded-full blur-3xl -z-10 animate-pulse" />
               </div>
-              <p className="mt-4 text-[#F4AFA8] font-script text-lg animate-pulse">
-                点击打开 ✨
-              </p>
             </button>
+            <p className="mt-5 text-[#F4AFA8] font-script text-lg animate-pulse">
+              点击打开礼盒 ✨
+            </p>
           </div>
         )}
 

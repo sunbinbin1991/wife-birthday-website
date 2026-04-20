@@ -104,15 +104,17 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
       
       {/* Candle Body */}
       <div 
-        className={`w-4 h-12 rounded-t-sm cursor-pointer transition-all duration-300 ${
-          candle.lit ? 'bg-gradient-to-b from-[#F4AFA8] to-[#E8B4B8]' : 'bg-gradient-to-b from-gray-300 to-gray-400'
+        className={`w-3.5 h-10 sm:w-4 sm:h-12 rounded-t-lg cursor-pointer transition-all duration-300 shadow-sm ${
+          candle.lit 
+            ? 'bg-gradient-to-b from-[#F4AFA8] to-[#E8B4B8]' 
+            : 'bg-gradient-to-b from-[#E8D5D5] to-[#D4C4B0] opacity-60'
         }`}
         onClick={onBlow}
       >
         {/* Candle stripes */}
-        <div className="h-full w-full flex flex-col justify-evenly">
+        <div className="h-full w-full flex flex-col justify-evenly px-0.5">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-px w-full bg-white/30" />
+            <div key={i} className="h-px w-full bg-white/40 rounded-full" />
           ))}
         </div>
       </div>
@@ -156,13 +158,13 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
           </div>
         </div>
 
-        {/* Cake Container - with proper spacing */}
+        {/* Cake Container */}
         <div 
-          className="relative mx-auto w-56 sm:w-72 cursor-pointer mt-4"
+          className="relative mx-auto w-56 sm:w-72 cursor-pointer mt-2"
           onClick={handleCakeClick}
         >
-          {/* Candles - positioned above cake with proper spacing */}
-          <div className="relative flex justify-center gap-3 sm:gap-5 mb-2 px-6">
+          {/* Candles */}
+          <div className="relative flex justify-center gap-3 sm:gap-4 mb-1 px-8">
             {candles.map((candle) => (
               <CandleSVG 
                 key={candle.id} 
@@ -178,7 +180,7 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
             alt="Birthday Cake"
             loading="eager"
             decoding="async"
-            className="w-full h-auto drop-shadow-2xl animate-float"
+            className="w-full h-auto rounded-2xl drop-shadow-2xl animate-float"
           />
 
           {/* Sparkles around cake */}
