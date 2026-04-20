@@ -113,7 +113,7 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
             >
               <div className="relative w-48 h-48 sm:w-64 sm:h-64 transition-transform duration-300 group-hover:scale-105">
                 <img 
-                  src="/images/gift-box.png" 
+                  src="/images/gift-box.jpg" 
                   alt="Gift Box"
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />

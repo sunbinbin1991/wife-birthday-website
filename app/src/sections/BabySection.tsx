@@ -86,7 +86,7 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
         <div className="relative mb-8">
           <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto">
             <img 
-              src="/images/baby-blessing.png" 
+              src="/images/baby-blessing.jpg" 
               alt="Baby holding drawing"
               className="w-full h-full object-contain animate-float"
             />
@@ -194,7 +194,10 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        preload="auto"
+        preload="metadata"
+        playsInline
+        x5-playsinline="true"
+        webkit-playsinline="true"
         onEnded={() => {
           setIsPlaying(false);
           onBabyAudioEnd?.();

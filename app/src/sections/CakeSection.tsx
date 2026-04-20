@@ -174,7 +174,7 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
 
           {/* Cake Image */}
           <img 
-            src="/images/birthday-cake.png" 
+            src="/images/birthday-cake.jpg" 
             alt="Birthday Cake"
             className="w-full h-auto drop-shadow-2xl animate-float"
           />

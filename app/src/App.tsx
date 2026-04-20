@@ -7,13 +7,45 @@ import MemorySection from './sections/MemorySection';
 import BabySection from './sections/BabySection';
 import PromiseSection from './sections/PromiseSection';
 import WishSection from './sections/WishSection';
-import { Music, Volume2, VolumeX } from 'lucide-react';
+import { Music, Volume2, VolumeX, Loader2 } from 'lucide-react';
 
 function App() {
   const [currentSection, setCurrentSection] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [showAudioPrompt, setShowAudioPrompt] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Preload critical images for WeChat
+  useEffect(() => {
+    const criticalImages = [
+      '/images/hero-bg.jpg',
+      '/images/baby-blessing.jpg',
+      '/images/birthday-cake.jpg',
+      '/images/gift-box.jpg',
+      '/images/starlight-bg.jpg',
+    ];
+    let loaded = 0;
+    const total = criticalImages.length;
+    
+    const checkAllLoaded = () => {
+      loaded++;
+      if (loaded >= total) {
+        setIsLoading(false);
+      }
+    };
+
+    criticalImages.forEach(src => {
+      const img = new Image();
+      img.onload = checkAllLoaded;
+      img.onerror = checkAllLoaded;
+      img.src = src;
+    });
+
+    // Timeout fallback
+    const timer = setTimeout(() => setIsLoading(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const sections = [
     { id: 'countdown', component: CountdownSection },
@@ -30,6 +62,26 @@ function App() {
     document.title = '🎂 紧急通知：今日公主生日';
   }, []);
 
+  // WeChat audio initialization
+  useEffect(() => {
+    const initWeChatAudio = () => {
+      if (audioRef.current) {
+        audioRef.current.load();
+      }
+    };
+    
+    // WeixinJSBridgeReady for WeChat browser
+    if (typeof window !== 'undefined' && (window as any).WeixinJSBridge) {
+      (window as any).WeixinJSBridge.invoke('getNetworkType', {}, initWeChatAudio);
+    } else {
+      document.addEventListener('WeixinJSBridgeReady', initWeChatAudio, false);
+    }
+    
+    return () => {
+      document.removeEventListener('WeixinJSBridgeReady', initWeChatAudio, false);
+    };
+  }, []);
+
   // Handle audio
   const enableAudio = () => {
     setAudioEnabled(true);
@@ -37,9 +89,17 @@ function App() {
     // Play background music
     if (audioRef.current) {
       audioRef.current.volume = 0.4; // Set volume to 40%
-      audioRef.current.play().catch(err => {
-        console.log('Audio play failed:', err);
-      });
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // WeChat may block autoplay, retry after user gesture
+          const retry = () => {
+            audioRef.current?.play().catch(() => {});
+            document.removeEventListener('touchstart', retry);
+          };
+          document.addEventListener('touchstart', retry, { once: true });
+        });
+      }
     }
   };
 
@@ -84,6 +144,14 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-[#FFF8F5]">
+      {/* Loading Screen */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#FFF8F5]">
+          <Loader2 className="w-10 h-10 text-[#F4AFA8] animate-spin mb-4" />
+          <p className="text-[#7A7A7A] text-sm">正在准备惊喜...</p>
+        </div>
+      )}
+
       {/* Audio Prompt */}
       {showAudioPrompt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
@@ -171,7 +239,10 @@ function App() {
       <audio 
         ref={audioRef} 
         loop 
-        preload="auto"
+        preload="metadata"
+        playsInline
+        x5-playsinline="true"
+        webkit-playsinline="true"
       >
         <source 
           src="/happybirthday.mp3" 
