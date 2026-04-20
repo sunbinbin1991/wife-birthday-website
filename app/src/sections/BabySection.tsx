@@ -166,26 +166,15 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
           </div>
         )}
 
-        {/* Drawing Display */}
+        {/* Baby's Drawing */}
         <div className="bg-[#F9E0D9]/30 rounded-2xl p-6 max-w-sm mx-auto mb-8">
-          <p className="text-sm text-[#7A7A7A] mb-3">宝宝的手写画</p>
+          <p className="text-sm text-[#7A7A7A] mb-3">宝宝的爱心画</p>
           <div className="bg-white rounded-xl p-4 shadow-inner">
-            <svg viewBox="0 0 200 100" className="w-full h-24">
-              {/* Hand-drawn style heart */}
-              <path
-                d="M100 85 C100 85 60 55 60 35 C60 20 75 10 90 20 C95 23 100 30 100 30 C100 30 105 23 110 20 C125 10 140 20 140 35 C140 55 100 85 100 85Z"
-                fill="#F4AFA8"
-                stroke="#E8B4B8"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="animate-pulse-soft"
-              />
-              {/* Text */}
-              <text x="100" y="50" textAnchor="middle" fill="#4A4A4A" fontSize="12" fontFamily="Dancing Script">
-                妈妈我爱你
-              </text>
-            </svg>
+            <img 
+              src="/images/babyheart.jpg" 
+              alt="宝宝的爱心画"
+              className="w-full h-auto rounded-lg"
+            />
           </div>
         </div>
 
