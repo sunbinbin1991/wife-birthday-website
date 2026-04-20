@@ -11,12 +11,7 @@ interface Promise {
   checked: boolean;
 }
 
-interface Photo {
-  year: number;
-  month: string;
-  description: string;
-  emoji: string;
-}
+
 
 const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -30,20 +25,11 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
   const [signature, setSignature] = useState('');
   const [showSignature, setShowSignature] = useState(false);
   const [allChecked, setAllChecked] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const fullSignature = "爱你的丈夫，也是永远追你的男孩";
 
-  // 生日照片数据
-  const photos: Photo[] = [
-    { year: 2021, month: "4月", description: "二人世界的那一年", emoji: "🏖️" },
-    { year: 2022, month: "4月", description: "二人世界的第二年", emoji: "🤰" },
-    { year: 2023, month: "4月", description: "新手妈妈的第一个生日", emoji: "👶" },
-    { year: 2024, month: "4月", description: "新手妈妈的第二个生日", emoji: "👨‍👩‍👦" },
-    { year: 2025, month: "4月", description: "去年的你", emoji: "👸" },
-    { year: 2026, month: "4月", description: "今年的生日", emoji: "✨" },
-  ];
+
 
   useEffect(() => {
     if (isFlipped && !showSignature) {
@@ -153,50 +139,19 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
           </div>
         </div>
 
-        {/* Birthday Photos Gallery */}
+        {/* Heart Collage - 历年回忆 */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg mb-4">
           <h3 className="text-sm font-semibold text-[#4A4A4A] mb-3 flex items-center gap-2">
             <Camera className="w-4 h-4 text-[#F4AFA8]" />
             历年回忆
           </h3>
-          <div className="grid grid-cols-3 gap-2">
-            {photos.map((photo, index) => (
-              <button
-                key={photo.year}
-                onClick={() => setSelectedPhoto(selectedPhoto === index ? null : index)}
-                className={`relative aspect-square rounded-xl overflow-hidden transition-all duration-300 ${
-                  selectedPhoto === index 
-                    ? 'ring-2 ring-[#F4AFA8] scale-105' 
-                    : 'hover:scale-105'
-                }`}
-              >
-                {/* Photo Placeholder with Gradient */}
-                <div className="w-full h-full bg-gradient-to-br from-[#F4AFA8]/20 to-[#E8B4B8]/20 flex flex-col items-center justify-center p-2">
-                  <span className="text-2xl mb-1">{photo.emoji}</span>
-                  <span className="text-xs font-semibold text-[#4A4A4A]">{photo.year}</span>
-                  <span className="text-[10px] text-[#7A7A7A]">{photo.month}</span>
-                </div>
-              </button>
-            ))}
+          <div className="rounded-xl overflow-hidden">
+            <img 
+              src="/images/heart_collage.jpg" 
+              alt="心形照片拼贴"
+              className="w-full object-cover"
+            />
           </div>
-          
-          {/* Selected Photo Detail */}
-          {selectedPhoto !== null && (
-            <div className="mt-3 p-3 bg-[#F9E0D9]/30 rounded-xl animate-fade-in-up">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">{photos[selectedPhoto].emoji}</span>
-                <div>
-                  <p className="text-sm font-semibold text-[#4A4A4A]">
-                    {photos[selectedPhoto].year}年{photos[selectedPhoto].month}
-                  </p>
-                  <p className="text-xs text-[#7A7A7A]">{photos[selectedPhoto].description}</p>
-                </div>
-              </div>
-              <p className="text-xs text-[#7A7A7A] mt-2 italic">
-                💡 提示：可以替换为真实的生日照片
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Card Container */}
