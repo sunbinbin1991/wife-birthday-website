@@ -11,6 +11,7 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   
   const fullText = "妈妈生日快乐，我今天不惹你生气，爸爸说你今天最大！";
   
@@ -38,8 +39,15 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
   }, []);
 
   const toggleAudio = () => {
-    setIsPlaying(!isPlaying);
-    // In a real implementation, this would play actual audio
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play().catch(() => {});
+      setIsPlaying(true);
+    }
   };
 
   return (
@@ -163,6 +171,14 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
           </div>
         )}
       </div>
+
+      {/* Audio Element */}
+      <audio
+        ref={audioRef}
+        src="/baby_saying.m4a"
+        preload="auto"
+        onEnded={() => setIsPlaying(false)}
+      />
 
       {/* Background Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
