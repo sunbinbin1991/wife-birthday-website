@@ -66,7 +66,21 @@ function App() {
     }
   };
 
+  const pauseBgAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+  };
+
+  const resumeBgAudio = () => {
+    if (audioRef.current && audioEnabled) {
+      audioRef.current.volume = 0.4;
+      audioRef.current.play().catch(() => {});
+    }
+  };
+
   const CurrentComponent = sections[currentSection].component;
+  const isBabySection = sections[currentSection].id === 'baby';
 
   return (
     <div className="relative min-h-screen bg-[#FFF8F5]">
@@ -128,7 +142,10 @@ function App() {
 
       {/* Main Content */}
       <main className="relative">
-        <CurrentComponent onComplete={nextSection} />
+        <CurrentComponent 
+          onComplete={nextSection} 
+          {...(isBabySection ? { onBabyAudioPlay: pauseBgAudio, onBabyAudioEnd: resumeBgAudio } : {})}
+        />
       </main>
 
       {/* Navigation Dots */}

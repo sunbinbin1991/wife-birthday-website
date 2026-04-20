@@ -3,9 +3,11 @@ import { Heart, Volume2, VolumeX } from 'lucide-react';
 
 interface BabySectionProps {
   onComplete: () => void;
+  onBabyAudioPlay?: () => void;
+  onBabyAudioEnd?: () => void;
 }
 
-const BabySection = ({ onComplete }: BabySectionProps) => {
+const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectionProps) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -44,8 +46,14 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
+      onBabyAudioEnd?.();
     } else {
-      audio.play().catch(() => {});
+      onBabyAudioPlay?.();
+      audio.play().catch((err) => {
+        console.log('Baby audio play failed:', err);
+        setIsPlaying(false);
+        onBabyAudioEnd?.();
+      });
       setIsPlaying(true);
     }
   };
@@ -197,10 +205,15 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
       {/* Audio Element */}
       <audio
         ref={audioRef}
-        src="/baby_saying.m4a"
         preload="auto"
-        onEnded={() => setIsPlaying(false)}
-      />
+        onEnded={() => {
+          setIsPlaying(false);
+          onBabyAudioEnd?.();
+        }}
+      >
+        <source src="/baby_saying.m4a" type="audio/mp4" />
+        您的浏览器不支持播放该音频
+      </audio>
 
       {/* Background Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
