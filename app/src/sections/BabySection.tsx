@@ -115,7 +115,7 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
           {/* Audio Button */}
           <button
             onClick={toggleAudio}
-            className="absolute top-4 right-4 w-10 h-10 bg-[#F4AFA8]/10 rounded-full flex items-center justify-center hover:bg-[#F4AFA8]/20 transition-colors"
+            className="absolute top-4 right-4 w-10 h-10 bg-[#F4AFA8]/10 rounded-full flex items-center justify-center hover:bg-[#F4AFA8]/20 transition-colors animate-pulse"
           >
             {isPlaying ? (
               <Volume2 className="w-5 h-5 text-[#F4AFA8]" />
@@ -123,6 +123,9 @@ const BabySection = ({ onComplete }: BabySectionProps) => {
               <VolumeX className="w-5 h-5 text-[#7A7A7A]" />
             )}
           </button>
+          <span className="absolute top-14 right-2 text-[10px] text-[#7A7A7A] whitespace-nowrap">
+            点击听宝宝说
+          </span>
 
           {/* Text */}
           <p className="text-lg sm:text-xl text-[#4A4A4A] font-body leading-relaxed text-left">
