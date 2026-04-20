@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Sparkles, Send, Heart } from 'lucide-react';
+import { Sparkles, Send, Heart, Share2, Check } from 'lucide-react';
 
 interface Star {
   id: number;
@@ -36,6 +36,7 @@ const WishSection = () => {
   const [showFinalMessage, setShowFinalMessage] = useState(false);
   const [isWishing, setIsWishing] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [shareCopied, setShareCopied] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
 
@@ -159,6 +160,30 @@ const WishSection = () => {
       }
     };
   }, []);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: '🎂 紧急通知：今日公主生日',
+      text: '来看看这份专属的生日惊喜！',
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch {
+        // 用户取消分享，不做处理
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        setShareCopied(true);
+        setTimeout(() => setShareCopied(false), 2000);
+      } catch {
+        // 复制失败
+      }
+    }
+  };
 
   const handleWish = async () => {
     if (!wish.trim()) return;
@@ -304,6 +329,24 @@ const WishSection = () => {
               )}
             </div>
 
+            {/* Share Button */}
+            <button
+              onClick={handleShare}
+              className="mt-6 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 mx-auto"
+            >
+              {shareCopied ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  <span>链接已复制</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="w-4 h-4" />
+                  <span>分享这份祝福</span>
+                </>
+              )}
+            </button>
+
             {/* Replay Button */}
             <button
               onClick={() => {
@@ -311,7 +354,7 @@ const WishSection = () => {
                 setWish('');
                 setIsWishing(false);
               }}
-              className="mt-8 text-white/60 hover:text-white text-sm transition-colors"
+              className="mt-4 text-white/60 hover:text-white text-sm transition-colors"
             >
               再许一个愿望
             </button>
