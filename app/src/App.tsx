@@ -16,34 +16,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Preload critical images for WeChat
+  // Preload only the first screen background for instant render
   useEffect(() => {
-    const criticalImages = [
-      '/images/hero-bg.jpg',
-      '/images/baby-blessing.jpg',
-      '/images/birthday-cake.jpg',
-      '/images/gift-box.jpg',
-      '/images/starlight-bg.jpg',
-    ];
-    let loaded = 0;
-    const total = criticalImages.length;
-    
-    const checkAllLoaded = () => {
-      loaded++;
-      if (loaded >= total) {
-        setIsLoading(false);
-      }
-    };
+    const img = new Image();
+    img.onload = () => setIsLoading(false);
+    img.onerror = () => setIsLoading(false);
+    img.src = '/images/hero-bg.jpg';
 
-    criticalImages.forEach(src => {
-      const img = new Image();
-      img.onload = checkAllLoaded;
-      img.onerror = checkAllLoaded;
-      img.src = src;
-    });
-
-    // Timeout fallback
-    const timer = setTimeout(() => setIsLoading(false), 5000);
+    // Fast timeout fallback - don't block user
+    const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -154,7 +135,7 @@ function App() {
 
       {/* Audio Prompt */}
       {showAudioPrompt && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
           <div className="bg-white rounded-3xl p-8 max-w-sm mx-4 text-center shadow-2xl animate-fade-in-up">
             <div className="w-16 h-16 bg-[#F4AFA8]/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Music className="w-8 h-8 text-[#F4AFA8]" />
@@ -187,7 +168,7 @@ function App() {
       {!showAudioPrompt && (
         <button
           onClick={toggleAudio}
-          className="fixed top-4 right-4 z-40 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110"
+          className="fixed top-4 right-4 z-40 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110"
         >
           {audioEnabled ? (
             <Volume2 className="w-5 h-5 text-[#F4AFA8]" />
@@ -200,7 +181,7 @@ function App() {
       {/* Progress Indicator */}
       {!showAudioPrompt && (
         <div className="fixed top-4 left-4 z-40 flex items-center gap-2">
-          <div className="bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-lg">
+          <div className="bg-white/90 rounded-full px-3 py-1.5 shadow-lg">
             <span className="text-xs text-[#7A7A7A]">
               {currentSection + 1} / {sections.length}
             </span>

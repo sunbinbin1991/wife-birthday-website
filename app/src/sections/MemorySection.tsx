@@ -115,6 +115,8 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
                 <img 
                   src="/images/gift-box.jpg" 
                   alt="Gift Box"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />
                 {/* Glow effect */}
@@ -173,6 +175,8 @@ const MemorySection = ({ onComplete }: MemorySectionProps) => {
                         <img 
                           src={memory.image} 
                           alt={`${memory.year}年的回忆`}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-32 sm:h-40 object-cover rounded-xl mt-3"
                         />
                       )}

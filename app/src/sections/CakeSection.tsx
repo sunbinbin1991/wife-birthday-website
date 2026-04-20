@@ -146,7 +146,7 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
         {/* Message Display */}
         <div className="h-14 mb-4 flex items-center justify-center">
           <div 
-            className={`bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg transition-all duration-500 ${
+            className={`bg-white/95 rounded-2xl px-6 py-3 shadow-lg transition-all duration-500 ${
               showMessage ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -176,6 +176,8 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
           <img 
             src="/images/birthday-cake.jpg" 
             alt="Birthday Cake"
+            loading="eager"
+            decoding="async"
             className="w-full h-auto drop-shadow-2xl animate-float"
           />
 
@@ -218,7 +220,7 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
 
       {/* Easter Egg Modal */}
       {showEasterEgg && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in-up">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 animate-fade-in-up">
           <div className="bg-white rounded-3xl p-8 max-w-sm mx-4 text-center shadow-2xl">
             <div className="text-4xl mb-4">💕</div>
             <h3 className="text-xl font-display font-bold text-[#4A4A4A] mb-2">

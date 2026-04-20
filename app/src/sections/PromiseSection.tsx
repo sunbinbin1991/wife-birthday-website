@@ -90,7 +90,7 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
         </div>
 
         {/* Promises List - Moved to top for easy access */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg mb-4">
+        <div className="bg-white/95 rounded-2xl p-4 shadow-lg mb-4">
           <h3 className="text-sm font-semibold text-[#4A4A4A] mb-3 flex items-center gap-2">
             <Check className="w-4 h-4 text-[#F4AFA8]" />
             点击勾选承诺
@@ -140,7 +140,7 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
         </div>
 
         {/* Heart Collage - 历年回忆 */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg mb-4">
+        <div className="bg-white/95 rounded-2xl p-4 shadow-lg mb-4">
           <h3 className="text-sm font-semibold text-[#4A4A4A] mb-3 flex items-center gap-2">
             <Camera className="w-4 h-4 text-[#F4AFA8]" />
             历年回忆
@@ -149,6 +149,8 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
             <img 
               src="/images/heart_collage.jpg" 
               alt="心形照片拼贴"
+              loading="lazy"
+              decoding="async"
               className="w-full object-cover"
             />
           </div>
@@ -169,6 +171,8 @@ const PromiseSection = ({ onComplete }: PromiseSectionProps) => {
               <img 
                 src="/images/love-card.jpg" 
                 alt="Love Card"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-40 sm:h-48 object-cover"
               />
               <div className="p-4 text-center">

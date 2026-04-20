@@ -124,7 +124,7 @@ const CountdownSection = ({ onComplete }: CountdownSectionProps) => {
         </p>
 
         {/* Opening Message */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl px-6 py-4 sm:px-8 sm:py-5 shadow-lg max-w-md mx-auto mb-10">
+        <div className="bg-white/95 rounded-3xl px-6 py-4 sm:px-8 sm:py-5 shadow-lg max-w-md mx-auto mb-10">
           <p className="text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
             亲爱的老婆，今天没有早醒的宝宝，没有待洗的衣服<br />
             只有 <span className="text-[#F4AFA8] font-semibold">24小时</span> 属于你的快乐时光

@@ -40,10 +40,10 @@ const WishSection = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
 
-  // Generate stars
+  // Generate stars - reduced count for mobile performance
   useEffect(() => {
     const newStars: Star[] = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 30; i++) {
       newStars.push({
         id: i,
         x: Math.random() * 100,
@@ -276,7 +276,7 @@ const WishSection = () => {
             </div>
 
             {/* Wish Input */}
-            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8">
+            <div className="bg-black/40 rounded-3xl p-6 sm:p-8">
               <textarea
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
@@ -319,7 +319,7 @@ const WishSection = () => {
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-sm mx-auto">
+            <div className="bg-black/40 rounded-2xl p-6 max-w-sm mx-auto">
               <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                 所有愿望都会实现<br />
                 因为我会陪你一起
@@ -332,7 +332,7 @@ const WishSection = () => {
             {/* Share Button */}
             <button
               onClick={handleShare}
-              className="mt-6 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 mx-auto"
+              className="mt-6 bg-white/20 hover:bg-white/40 text-white px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 mx-auto"
             >
               {shareCopied ? (
                 <>

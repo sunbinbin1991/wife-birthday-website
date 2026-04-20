@@ -40,6 +40,48 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
     return () => clearInterval(interval);
   }, []);
 
+  const isWeChat = () => /MicroMessenger/i.test(navigator.userAgent);
+
+  const playAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    
+    onBabyAudioPlay?.();
+    setIsPlaying(true);
+    
+    const doPlay = () => {
+      audio.play().then(() => {
+        // success
+      }).catch((err) => {
+        console.log('Baby audio play failed:', err);
+        // In WeChat, try creating a fresh audio element
+        if (isWeChat()) {
+          const freshAudio = new Audio('/baby_saying.mp3');
+          freshAudio.play().then(() => {
+            // Transfer control to the fresh audio
+            freshAudio.onended = () => {
+              setIsPlaying(false);
+              onBabyAudioEnd?.();
+            };
+          }).catch(() => {
+            setIsPlaying(false);
+            onBabyAudioEnd?.();
+            alert('请点击右上角「...」选择在浏览器中打开，以获得最佳体验');
+          });
+          return;
+        }
+        setIsPlaying(false);
+        onBabyAudioEnd?.();
+      });
+    };
+    
+    if (isWeChat() && (window as any).WeixinJSBridge) {
+      (window as any).WeixinJSBridge.invoke('getNetworkType', {}, doPlay);
+    } else {
+      doPlay();
+    }
+  };
+
   const toggleAudio = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -48,13 +90,7 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
       setIsPlaying(false);
       onBabyAudioEnd?.();
     } else {
-      onBabyAudioPlay?.();
-      audio.play().catch((err) => {
-        console.log('Baby audio play failed:', err);
-        setIsPlaying(false);
-        onBabyAudioEnd?.();
-      });
-      setIsPlaying(true);
+      playAudio();
     }
   };
 
@@ -88,25 +124,25 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
             <img 
               src="/images/baby-blessing.jpg" 
               alt="Baby holding drawing"
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-contain animate-float"
             />
-            {/* Glow */}
-            <div className="absolute inset-0 bg-[#F4AFA8]/10 rounded-full blur-3xl -z-10" />
           </div>
           
-          {/* Floating Hearts */}
+          {/* Floating Hearts - reduced for performance */}
           {showHearts && (
             <>
-              {[...Array(6)].map((_, i) => (
+              {[...Array(3)].map((_, i) => (
                 <Heart
                   key={i}
                   className="absolute text-[#F4AFA8] animate-float"
                   style={{
-                    top: `${-10 + i * 15}%`,
-                    left: `${10 + (i % 3) * 30}%`,
-                    animationDelay: `${i * 0.2}s`,
-                    width: `${16 + (i % 3) * 4}px`,
-                    height: `${16 + (i % 3) * 4}px`,
+                    top: `${-5 + i * 20}%`,
+                    left: `${15 + (i % 3) * 30}%`,
+                    animationDelay: `${i * 0.3}s`,
+                    width: `${18}px`,
+                    height: `${18}px`,
                   }}
                   fill="currentColor"
                 />
@@ -173,6 +209,8 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
             <img 
               src="/images/babyheart.jpg" 
               alt="宝宝的爱心画"
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto rounded-lg"
             />
           </div>
@@ -208,17 +246,8 @@ const BabySection = ({ onComplete, onBabyAudioPlay, onBabyAudioEnd }: BabySectio
         您的浏览器不支持播放该音频
       </audio>
 
-      {/* Background Pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hearts" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <Heart x="10" y="10" width="8" height="8" className="text-[#F4AFA8]/20" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hearts)" />
-        </svg>
-      </div>
+      {/* Background Pattern - simplified for performance */}
+      <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #F4AFA8 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
     </section>
   );
 };
