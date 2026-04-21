@@ -164,7 +164,7 @@ const CakeSection = ({ onComplete }: CakeSectionProps) => {
           onClick={handleCakeClick}
         >
           {/* Candles */}
-          <div className="relative flex justify-center gap-3 sm:gap-4 mb-1 px-8">
+          <div className="relative flex justify-center gap-3 sm:gap-4 mb-6 px-10">
             {candles.map((candle) => (
               <CandleSVG 
                 key={candle.id} 
